@@ -57,4 +57,27 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
 }
 
+	public Movie findMovie(String movietitle) {
+	String query = "Select * FROM " + TABLE_MOVIES + " WHERE " + COLUMN_MOVIETITLE + " =  \"" + productname + "\"";
+	
+	SQLiteDatabase db = this.getWritableDatabase();
+	
+	Cursor cursor = db.rawQuery(query, null);
+	
+	Movie movie = new Movie();
+	
+	if (cursor.moveToFirst()) {
+		cursor.moveToFirst();
+		movie.setID(Integer.parseInt(cursor.getString(0)));
+		movie.setMovieTitle(cursor.getString(1));
+		movie.setReleaseYear(cursor.getString(2));
+		movie.setMovieGenre(cursor.getString(3));
+		cursor.close();
+	} else {
+		movie = null;
+	}
+	db.close();
+	return movie;
+}
+
 }
