@@ -43,5 +43,18 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_MOVIES);
 	    onCreate(db);
     }
+    
+    public void addMovie(Movie movie) {
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_MOVIETITLE, movie.getMovieTitle());
+        values.put(COLUMN_RELEASEYEAR, movie.getReleaseYear());
+        value.put(COLUMN_MOVIEGENRE, movie.getMovieGenre());
+ 
+        SQLiteDatabase db = this.getWritableDatabase();
+        
+        db.insert(TABLE_Movies, null, values);
+        db.close();
+}
 
 }
