@@ -1,39 +1,77 @@
 package com.saphiric.moviekeeper;
 
-import android.app.Activity;
+import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 
-public class MainMenu extends Activity {
+public class MainMenu extends ActionBarActivity {
+
+    TextView idView;
+    EditText movieTitleBox;
+    EditText releaseYearBox;
+    EditText movieGenreBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainmenu);
+
+        idView = (TextView) findViewById(R.id.productID);
+        movieTitleBox = (EditText) findViewById(R.id.movieTitle);
+        releaseYearBox = (EditText) findViewById(R.id.movieReleaseYear);
+        movieGenreBox = (EditText) findViewById(R.id.movieGenre);
     }
 
+    public void newMovie (View view) {
+        DBHandler dbHandler = new DBHandler(this, null, null, 1);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main_menu, menu);
-        return true;
+        String title = movieTitleBox.getText();
+        String releaseyear = releaseYearBox.getText();
+        String moviegenre = moveGenreBox.getText();
+
+        Movie movie = new Movie(title, releaseyear, moviegenre);
+
+        dbHandler.addMovie(movie);
+        movieTitleBox.setText("");
+        releaseYearBox.setText("");
+        movieGenreBox.setText("");
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public void lookupMovie (View view) {
+        DBHandler dbHandler = new DBHandler(this, null, null, 1);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        Movie movie = dbHandler.findMovie(movieTitleBox.getText());
+
+        if (movie != null) {
+            idView.setText(String.valueOf(movie.getID()));
+            releaseYearBox.setText(String.valueOf(movie.getReleaseyear()));
+            movieGenreBox.setText(String.valueOf(movie.getMovieGenre()));
+        } else {
+            idView.setText("No Match Found");
         }
-
-        return super.onOptionsItemSelected(item);
     }
+
+    public void removeMovie (View view) {
+        DBHandler dbHandler = new DBHandler(this, null, null, 1);
+
+        boolean result = dbHandler.deleteMovie(movieTitleBox.getText());
+
+        if (result)
+        {
+            idView.setText("Record Deleted");
+            movieTitleBox.setText("");
+            releaseYearBox.setText("");
+            movieGenreBox.setText("");
+        }
+        else
+            idView.setText("No Match Found");
+    }
+.
+.
+.
 }
