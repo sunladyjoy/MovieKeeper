@@ -1,5 +1,6 @@
 package com.saphiric.moviekeeper;
 
+import android.app.Activity;
 import android.widget.TextView;
 
 import android.support.v7.app.ActionBarActivity;
@@ -11,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 
-public class MainMenu extends ActionBarActivity {
+public class MainMenu extends Activity {
 
     TextView idView;
     EditText movieTitleBox;
