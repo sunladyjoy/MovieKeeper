@@ -1,5 +1,7 @@
 package com.saphiric.moviekeeper;
 
+import android.widget.TextView;
+
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -27,12 +29,12 @@ public class MainMenu extends ActionBarActivity {
         movieGenreBox = (EditText) findViewById(R.id.movieGenre);
     }
 
-    public void newMovie (View view) {
+    public void newMovie(View view) {
         DBHandler dbHandler = new DBHandler(this, null, null, 1);
 
-        String title = movieTitleBox.getText();
-        String releaseyear = releaseYearBox.getText();
-        String moviegenre = moveGenreBox.getText();
+        String title = movieTitleBox.getText().toString();
+        String releaseyear = releaseYearBox.getText().toString();
+        String moviegenre = movieGenreBox.getText().toString();
 
         Movie movie = new Movie(title, releaseyear, moviegenre);
 
@@ -42,36 +44,32 @@ public class MainMenu extends ActionBarActivity {
         movieGenreBox.setText("");
     }
 
-    public void lookupMovie (View view) {
+    public void lookupMovie(View view) {
         DBHandler dbHandler = new DBHandler(this, null, null, 1);
 
-        Movie movie = dbHandler.findMovie(movieTitleBox.getText());
+        Movie movie = dbHandler.findMovie(movieTitleBox.getText().toString());
 
         if (movie != null) {
-            idView.setText(String.valueOf(movie.getID()));
-            releaseYearBox.setText(String.valueOf(movie.getReleaseyear()));
+            idView.setText(String.valueOf(movie.getId()));
+            releaseYearBox.setText(String.valueOf(movie.getReleaseYear()));
             movieGenreBox.setText(String.valueOf(movie.getMovieGenre()));
         } else {
             idView.setText("No Match Found");
         }
     }
 
-    public void removeMovie (View view) {
+    public void removeMovie(View view) {
         DBHandler dbHandler = new DBHandler(this, null, null, 1);
 
-        boolean result = dbHandler.deleteMovie(movieTitleBox.getText());
+        boolean result = dbHandler.deleteMovie(movieTitleBox.getText().toString());
 
-        if (result)
-        {
+        if (result) {
             idView.setText("Record Deleted");
             movieTitleBox.setText("");
             releaseYearBox.setText("");
             movieGenreBox.setText("");
-        }
-        else
+        } else
             idView.setText("No Match Found");
     }
-.
-.
-.
+
 }

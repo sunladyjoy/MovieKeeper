@@ -20,7 +20,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_MOVIETITLE = "movietitle";
     public static final String COLUMN_RELEASEYEAR = "releaseyear";
-    public static final String COLUMN_MOVIEGENRE = "moviegenre"
+    public static final String COLUMN_MOVIEGENRE = "moviegenre";
     
     public DBHandler(Context context, String name,
                        SQLiteDatabase.CursorFactory factory, int version) {
@@ -49,11 +49,11 @@ public class DBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_MOVIETITLE, movie.getMovieTitle());
         values.put(COLUMN_RELEASEYEAR, movie.getReleaseYear());
-        value.put(COLUMN_MOVIEGENRE, movie.getMovieGenre());
+        values.put(COLUMN_MOVIEGENRE, movie.getMovieGenre());
  
         SQLiteDatabase db = this.getWritableDatabase();
         
-        db.insert(TABLE_Movies, null, values);
+        db.insert(TABLE_MOVIES, null, values);
         db.close();
 }
 
@@ -94,8 +94,8 @@ public boolean deleteMovie(String movietitle) {
 	
 	if (cursor.moveToFirst()) {
 		movie.setID(Integer.parseInt(cursor.getString(0)));
-		db.delete(TABLE_PRODUCTS, COLUMN_ID + " = ?",
-	            new String[] { String.valueOf(movie.getID()) });
+		db.delete(TABLE_MOVIES, COLUMN_ID + " = ?",
+	            new String[] { String.valueOf(movie.getId()) });
 		cursor.close();
 		result = true;
 	}

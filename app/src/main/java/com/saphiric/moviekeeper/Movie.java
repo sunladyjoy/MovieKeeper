@@ -12,21 +12,21 @@ public class Movie {
 
     private int _id;
     private String _movietitle;
-    private int _releaseyear;
+    private String _releaseyear;
     private String _moviegenre;
 
     public Movie(){
 
     }
 
-    public Movie(int id, String movietitle, int releaseyear, String moviegenre){
+    public Movie(int id, String movietitle, String releaseyear, String moviegenre){
         this._id = id;
         this._movietitle = movietitle;
         this._releaseyear = releaseyear;
         this._moviegenre = moviegenre;
     }
 
-    public Movie(String movietitle, int releaseyear, String moviegenre){
+    public Movie(String movietitle, String releaseyear, String moviegenre){
         this._movietitle = movietitle;
         this._releaseyear = releaseyear;
         this._moviegenre = moviegenre;
@@ -60,11 +60,11 @@ public class Movie {
      * Getter and setter for the release year
      * @param releaseyear should be the release year of the movie
      */
-    public void setReleaseYear(int releaseyear){
+    public void setReleaseYear(String releaseyear){
         this._releaseyear = releaseyear;
     }
 
-    public int getReleaseYear(){
+    public String getReleaseYear(){
         return this._releaseyear;
     }
 
