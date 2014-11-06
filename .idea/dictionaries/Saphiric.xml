@@ -2,9 +2,11 @@
   <dictionary name="Saphiric">
     <words>
       <w>moviegenre</w>
+      <w>moviekeeper</w>
       <w>movietitle</w>
       <w>productname</w>
       <w>releaseyear</w>
+      <w>sqlite</w>
     </words>
   </dictionary>
 </component>
