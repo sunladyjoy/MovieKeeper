@@ -23,19 +23,22 @@
         android:id="@+id/movieTitle"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_below="@id/productID"/>
+        android:layout_below="@id/productID"
+        android:hint="@string/titleHint"/>
 
     <EditText
         android:id="@+id/movieReleaseYear"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_below="@id/movieTitle"/>
+        android:layout_below="@id/movieTitle"
+        android:hint="@string/yearHint"/>
 
     <EditText
         android:id="@+id/movieGenre"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_below="@id/movieReleaseYear"/>
+        android:layout_below="@id/movieReleaseYear"
+        android:hint="@string/genreHint"/>
 
     <LinearLayout
         android:layout_width="match_parent"

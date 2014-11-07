@@ -7,5 +7,9 @@
     <string name="add_string">Add</string>
     <string name="find_string">Find</string>
     <string name="delete_string">Delete</string>
+    <string name="titleHint">Movie Title</string>
+    <string name="yearHint">Release Year</string>
+    <string name="genreHint">Movie Genre</string>
+    <string name="action_search">Search</string>
 
 </resources>

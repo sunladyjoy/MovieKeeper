@@ -1,7 +1,10 @@
 package com.saphiric.moviekeeper;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,10 +22,26 @@ public class MainMenu extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainmenu);
 
+        /*
+        Retrieves and instance of the action bar and
+        sets it show
+        */
+        ActionBar actionBar = getActionBar();
+        actionBar.show();
+
         idView = (TextView) findViewById(R.id.productID);
         movieTitleBox = (EditText) findViewById(R.id.movieTitle);
         releaseYearBox = (EditText) findViewById(R.id.movieReleaseYear);
         movieGenreBox = (EditText) findViewById(R.id.movieGenre);
+    }
+
+    // Sets up the action bar menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        // Inflates menu for action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     public void newMovie(View view) {
